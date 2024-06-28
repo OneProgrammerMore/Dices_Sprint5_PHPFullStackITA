@@ -1,0 +1,105 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="./src/styles.css">
+	<meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dices Everywhere</title>
+    <base href=".">
+</head>
+<body>
+	<div  id="MYHTML">
+	<header>
+		<div id="WebLogo">
+		</div>
+		<div id="WebName" onclick="ShowLogin();" >
+			Dices
+		</div>
+	</header>
+		
+	<nav id="nav">
+		
+		<div id="UserNav" class="navSection">
+			
+			<div class="navName">
+				User
+			</div>
+			
+			<div class="navItems">
+				<div class="navItem">
+					<a href="#" onclick="ShowPlay();">
+						Play
+					</a>
+				</div>
+				<div class="navItem">
+					<a href="#" onclick="ShowDelete();" >
+						Delete
+					</a>
+				</div>
+				<div class="navItem">
+					<a href="#" onclick="ShowModifyName();"  >
+						Modify Name
+					</a>
+				</div>
+			</div>
+			
+		</div>
+		<div id="AdminNav"  class="navSection">
+			<div class="navName">
+				Admin
+			</div>
+			
+			<div class="navItems">
+				<div class="navItem">
+					<a href="#" onclick="ShowListPlayers();" >
+						List Users
+					</a>
+				</div>
+				<div class="navItem">
+					<a href="#" onclick="ShowRanking();" >
+						Ranking
+					</a>
+				</div>
+				<div class="navItem">
+					<a href="#" onclick="ShowLoser();" >
+						Worst
+					</a>
+				</div>
+				<div class="navItem">
+					<a href="#" onclick="ShowWinner();" >
+						Best
+					</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+	
+	<main id="root">
+		
+		
+		<script crossorigin type="module" src="./src/main.tsx"></script>
+	</main>
+	
+	
+	<footer>
+		<div class="footerLink">
+			Home
+		</div>
+		<div class="footerLink">
+			About Us
+		</div>
+		<div class="footerLink">
+			Contact
+		</div>
+		<div class="footerLink">
+			Legal
+		</div>
+	
+	</footer>
+	
+	</div>
+	
+</body>
+</html> 

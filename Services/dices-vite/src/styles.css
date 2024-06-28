@@ -1,0 +1,408 @@
+@font-face {
+    font-family: 'jqkas';
+    src: url('./fonts/JqkasWild-w1YD6.ttf');
+}
+
+:root{
+	/*--my-brown: #5E2818;
+	--my-green: #567928;
+	--my-red: #C44018;*/
+	
+	--my-brown: #49270e;
+	--my-green: #0c6811;
+	--my-red:  #AA4651;
+	--my-red2: #DB3043;
+	
+	--my-brown-img: url(./imgs/darkwood.webp);
+	--my-green-img: url(./imgs/greenpoker2.jpg);
+	--logo-img: url("./imgs/diceWhite.png");
+	--eye-icon: url("./imgs/eyeGreenDark.png");
+}
+
+
+input, select, textarea{
+    background-color: var(--my-green);
+    background-image: var(--my-green-img);
+}
+
+html *{
+	font-family: jqkas !important;
+	font-weight: 900;
+	color: white;
+}
+
+
+a{
+	text-decoration: none;
+}
+
+
+html{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	
+	width: 100%;
+	height: auto;
+	
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+}
+
+
+body{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	
+	width: 70%;
+	height: auto;
+	background-color: var(--my-brown);
+	background-image: var(--my-brown-img);
+}
+
+header{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	
+	width: 100%;
+	height: auto;
+	
+	align-content: center;
+	align-items: center;
+	justify-content: space-between;
+	
+	background-color: var(--my-green);
+	background-image: var(--my-green-img);
+	
+}
+
+#HeaderLeft{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	
+	width: auto;
+	height: auto;
+	
+	align-content: center;
+	align-items: center;
+
+}
+#HeaderRight{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	
+	width: 30%;
+	height: auto;
+	
+	align-content: center;
+	align-items: center;
+	justify-content: flex-end;
+	margin-right: 30px;
+	
+	font-size: 22px;
+
+}
+.LogOutDiv:hover{
+	cursor: pointer;
+	
+}
+
+
+
+#WebLogo{
+	background-image: var(--logo-img);
+	height: 100px;
+	width: 100px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	padding: 10px;
+	margin-left: 40px;
+}
+#WebName{
+	font-size: 30px;
+	font-weight: bold;
+	margin-left: 20px;
+}
+#WebName:hover{
+	cursor: pointer;
+}
+
+nav{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	
+	width: 100%;
+	height: auto;
+	margin-top: 5px;
+	background-color: var(--my-green);
+	background-image: var(--my-green-img);
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.navSection{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	
+	width: 40%;
+	height: auto;
+	
+	align-items: center;
+	
+}
+
+.navName{
+	font-size: 20px;
+	font-weight: bold;
+	
+}
+
+.navItems{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	
+	width: 100%;
+	height: auto;
+	
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.navItem{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+footer{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-evenly;
+	
+	margin-top: 20px;
+	
+	width: 100%;
+	height: auto;
+	
+	align-content: center;
+	align-items: center;
+	
+	background-color: var(--my-green);
+	background-image: var(--my-green-img);
+}
+
+.footerLink{
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+/*MAIN AND MORE COMPONENTS*/
+main{
+	background-color: var(--my-green);
+	background-image: var(--my-green-img);
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+/*Login Component */
+.main_container{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-content: center;
+	width: 90%;
+
+}
+
+.form_section{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: flex-start;
+	
+	flex:1;
+	
+	height: auto;
+	width:auto;
+	
+	background-color: var(--my-brown);
+	background-image: var(--my-brown-img);
+	
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.form_section > h3{
+	font-size: 21px;
+	font-weight: bold;
+	text-align: center;
+}
+.form_user{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-evenly;
+	flex: 1;
+}
+
+.form_user > .submitBttn{
+	margin-top: 21px;
+	margin-bottom: 15px;
+}
+
+
+/*Play Component*/
+.goodLuck{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
+	align-content: center;
+	align-items: center;
+}
+
+#dices{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
+	margin-top:10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	font-weight: bold;
+	
+	background-color: (--my-brown);
+	background-image: var(--my-brown-img);
+	
+	
+	
+}
+#dices_results{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+#dice_1, #dice_2{
+	width: 90px;
+	height: 90px;
+	
+	text-align: center;
+	justify-content: center;
+	align-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	
+	border: solid;
+	border-color: white;
+	border-width: 1px;
+	
+	background-color: var(--my-red);
+	background-image: none;
+}
+#all_dices{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+#dices_sum{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
+	margin-top:10px;
+	margin-bottom: 10px;
+	/*border-radius: 10px;*/
+	font-size: 21px;
+	font-weight: bold;
+	border-color: white;
+	border-width: 1px;
+	border: solid;
+	
+	background-image: var(--my-green-img);
+	
+	
+}
+.goodLuck > #dices, .goodLuck > .form_section {
+	width: 300px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 17px;
+}
+
+
+/*List Players Component*/
+#user_table{
+	display: table;
+	border: solid 1px;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: left;
+}
+tr{
+	text-align: center;
+}
+#user_table > thead > tr{
+	background-color: var(--my-brown) ;
+}
+#user_table > tbody > tr:nth-child(even){
+	background-color: var(--my-red);
+}
+#user_table > tbody > tr:nth-child(odd){
+	background-color: var(--my-red2);
+}
+.moreInfoIcon{
+	display: flex;
+	background-image: var(--eye-icon); 
+	height: 25px;
+	width: auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.moreInfoIcon:hover{
+	cursor: pointer;
+}
+
+
+ @media only screen and (max-width: 935px) {
+	.main_container{
+		flex-direction: column;
+	}
+	.form_section{
+		width: 80% !important;
+	}
+ }

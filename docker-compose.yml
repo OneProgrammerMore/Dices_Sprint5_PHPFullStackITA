@@ -1,0 +1,73 @@
+services:
+    dices_sprint05:
+        depends_on:
+            mariadb_dices:
+              condition: service_healthy
+        container_name: dices-backend
+        build:
+            context: .
+            dockerfile: Dockerfile_backend
+        ports:
+            - "82:80"
+        volumes:
+          - ./Services/dices/:/var/www/html
+        command: >
+            bash -c "cd /var/www/html/ 
+            && a2enmod rewrite
+            && composer update && composer install 
+            && php artisan migrate 
+            && php artisan db:seed 
+            && php artisan key:generate
+            && php artisan passport:install
+            && chmod -R a+w /var/www/html/storage/
+            && /usr/sbin/apachectl -D FOREGROUND"
+        networks:
+            - sprint05_network
+
+    dices-react_sprint05:
+        depends_on:
+          - dices_sprint05
+        container_name: dices-frontend
+        build:
+            context: .
+            dockerfile: Dockerfile_react
+        ports:
+            - "83:80"
+        volumes:
+            - ./Services/dices-vite/:/usr/share/nginx/html
+            - ./docker/config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        command: >
+            bash -c "cd /usr/share/nginx/html/
+            && npm install 
+            && npm run build
+            && nginx -g 'daemon off;'"
+        networks:
+            - sprint05_network
+
+    mariadb_dices:
+        container_name: sprint05-mariadb
+        image: mariadb:lts-noble
+        environment:
+            MYSQL_DATABASE: dices_database
+            MYSQL_USER: lucker
+            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: root_password
+        volumes:
+            - ./docker/mysql-data:/var/lib/mysql
+        healthcheck:
+          interval: 30s
+          retries: 3
+          test:
+            [
+              "CMD",
+              "healthcheck.sh",
+              "--su-mysql",
+              "--connect",
+              "--innodb_initialized"
+            ]
+          timeout: 30s
+        networks:
+            - sprint05_network
+
+networks:
+    sprint05_network:
