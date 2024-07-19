@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Illuminate\Support\Facades\Auth;
 
-// App\Http\Middleware\EnsureUserID
 class EnsureUserID
 {
     /**
@@ -19,24 +18,19 @@ class EnsureUserID
     public function handle(Request $request, Closure $next): Response
     {
         
-        $playerIDRoute = $request->route('player_id');
-        //$playerIDAuth = auth('api')->user();
-        $playerIDAuth =Auth::user()->id;
+        $userIDRoute = $request->route('user')->id;
+        $userIDAuth = Auth::user()->id;
+       
         
-        if($playerIDRoute != null){
-			//If the authenticate player is not the player for the route:
-			//Return error 401
-			if($playerIDRoute != $playerIDAuth ){
-				//return response(['error' =>  'User Error'], 401);
-				return response()->json(['error' =>  'User Error'], 401);
-			}
-		}else{
-			//Dunno what happened here, player id not existing or no parameter
-			//return response(['error' => 'URL Error'], 404);
-			return response()->json(['error' => 'URL Error'], 404);
-		
+        if(!$userIDRoute || !$userIDAuth)
+        {
+			return response()->json(['error' =>  'User Error'], 404);
 		}
-
+		if($userIDRoute != $userIDAuth)
+		{
+			return response()->json(['error' => 'URL Error'], 401);
+		}
+        		
         return $next($request);
     }
 }

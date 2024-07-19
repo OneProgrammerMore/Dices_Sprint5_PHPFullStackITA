@@ -16,13 +16,9 @@ class RolesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        
-        $playerRole = Role::create(['guard_name' => 'api' ,'name' => 'player']);
-        //$playerRole->givePermissionTo('play');
-        
-        $adminRole = Role::create(['guard_name' => 'api' , 'name' => 'admin']);
-        //$adminRole->givePermissionTo('watch');
+		
+		Role::create(['guard_name' => 'api' ,'name' => 'player']);
+        Role::create(['guard_name' => 'api' , 'name' => 'admin']);
         
     }
 }

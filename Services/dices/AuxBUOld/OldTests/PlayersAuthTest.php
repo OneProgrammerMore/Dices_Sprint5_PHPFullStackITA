@@ -11,7 +11,8 @@ class PlayersAuthTest extends TestCase
 {
 	
 	
-	public static string $my_domain = "http://127.0.0.1:8000";
+	//public static string $my_domain = "http://127.0.0.1:8000";
+	public static string $my_domain = "";
 	public static bool $sleepBool = true; 
 	public static int $sleepTime = 200000; //In microseconds
 	

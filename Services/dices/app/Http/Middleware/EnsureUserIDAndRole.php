@@ -19,35 +19,28 @@ class EnsureUserIDAndRole
 		
 		//First if the user role is admin do not check anything and NEXT!!!
 		if(Auth::user()->hasRole('admin')){
-			
 			return $next($request);
+		}
 		
-		}elseif(Auth::user()->hasRole('player')){
+		if(Auth::user()->hasRole('player')){
 			
-			$playerIDRoute = $request->route('player_id');
-			//$playerIDAuth = auth('api')->user();
-			$playerIDAuth = Auth::user()->id;
+			$userIDRoute = $request->route('user')->id;
+			$userIDAuth = Auth::user()->id;
 			
-			if($playerIDRoute != null){
-				//If the authenticate player is not the player for the route:
-				//Return error 401
-				if($playerIDRoute != $playerIDAuth ){
-					return response()->json(['error' =>  'User Error'], 401);
-				}
-			}else{
-				//Dunno what happened here, player id not existing or no parameter
-				return response()->json(['error' => 'URL Error'], 404);
+			if(!$userIDRoute || !$userIDAuth)
+			{
+				return response()->json(['error' =>  'User Error'], 404);
 			}
-			
+			if($userIDRoute != $userIDAuth)
+			{
+				return response()->json(['error' => 'URL Error'], 401);
+			}
+						
 			return $next($request);
 	
-		}else{
-			//Okay something happened here... And I dunno what...
-			//No role assigned of the allowed
-			//Return error to avoid hacking intrussions
-			//ToDo - Log The error
-			return response()->json(['error' => 'URL Error'], 404);
 		}
+
+		return response()->json(['error' => 'URL Error'], 404);
 		
     }
 }

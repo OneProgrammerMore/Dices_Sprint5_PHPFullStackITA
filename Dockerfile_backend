@@ -17,12 +17,13 @@ RUN apt -y install npm
 #RUN yes '' | pecl install -f mongodb
 
 RUN sed -i "s/;extension=pdo_mysql/extension=pdo_mysql/g" /etc/php/8.2/cli/php.ini
-#RUN sed -i '/;extension=shmop/a extension=mongodb.so' /etc/php/8.2/cli/php.ini
+#RUN sed -i '/;extension=shmop/a extension=mongodb' /etc/php/8.2/cli/php.ini
 
-RUN sed -i "s/;extension=pdo_mysql/extension=pdo_mysql.so/g" /etc/php/8.2/apache2/php.ini
-#RUN sed -i '/;extension=shmop/a extension=mongodb.so' /etc/php/8.2/apache2/php.ini
+RUN sed -i "s/;extension=pdo_mysql/extension=pdo_mysql/g" /etc/php/8.2/apache2/php.ini
+#RUN sed -i '/;extension=shmop/a extension=mongodb' /etc/php/8.2/apache2/php.ini
 
 RUN sed -i "s/;extension=curl/extension=curl/g" /etc/php/8.2/cli/php.ini
+RUN sed -i "s/;extension=curl/extension=curl/g" /etc/php/8.2/apache2/php.ini
 
 
 RUN rm /var/www/html/index.html

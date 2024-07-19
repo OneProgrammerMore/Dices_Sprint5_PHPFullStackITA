@@ -1,3 +1,5 @@
+version: "3"
+
 services:
     dices_sprint05:
         depends_on:
@@ -18,7 +20,7 @@ services:
             && php artisan migrate 
             && php artisan db:seed 
             && php artisan key:generate
-            && php artisan passport:install
+            && php artisan passport:install --uuids
             && chmod -R a+w /var/www/html/storage/
             && /usr/sbin/apachectl -D FOREGROUND"
         networks:
@@ -48,15 +50,15 @@ services:
         container_name: sprint05-mariadb
         image: mariadb:lts-noble
         environment:
-            MYSQL_DATABASE: dices_database
-            MYSQL_USER: lucker
-            MYSQL_PASSWORD: password
-            MYSQL_ROOT_PASSWORD: root_password
+           MYSQL_DATABASE: dices_database
+           MYSQL_USER: user
+           MYSQL_PASSWORD: password
+           MYSQL_ROOT_PASSWORD: root_password
         volumes:
             - ./docker/mysql-data:/var/lib/mysql
         healthcheck:
-          interval: 30s
-          retries: 3
+          interval: 10s
+          retries: 5
           test:
             [
               "CMD",
