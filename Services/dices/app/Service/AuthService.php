@@ -22,6 +22,19 @@ use App\Exceptions\JWTokenNotGeneratedException;
 class AuthService
 {
 	
+	public function getRoleByUser(User $user): string
+	{
+		if($user->hasRole('admin'))
+		{
+			return 'admin';
+		}else if($user->hasRole('player'))
+		{	
+			return 'player';
+		}else{
+			return 'none';
+			//ToDo - Return Exception UserHasNoRoleException
+		}
+	}
 	
 	public function getUserByEmail(string $email): User
 	{

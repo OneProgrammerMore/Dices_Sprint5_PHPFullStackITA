@@ -24,7 +24,7 @@ export default class Home extends React.Component<IProps, IState>{
 	static contextType = MyContext;
 	declare context: MyContextType;
 	
-	changeNavSectionAndUser = (userID: number, mainType: string) => {
+	changeNavSectionAndUser = (userID: string, mainType: string) => {
 		this.context.updateValueMainAndUserID(userID, mainType);
 	}
 	

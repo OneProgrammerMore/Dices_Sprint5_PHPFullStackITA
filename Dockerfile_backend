@@ -8,10 +8,9 @@ FROM debian:bookworm-slim
 RUN apt update
 RUN apt -y install nano lsof
 RUN apt -y install apache2
-RUN apt -y install php php-dev php-cli php-pear composer php-mysql
-RUn apt -y install php-common
-
+RUN apt -y install php php-common php-dev php-cli php-pear composer php-mysql 
 RUN apt -y install php-curl
+
 RUN apt -y install npm
 
 #RUN yes '' | pecl install -f mongodb
@@ -24,6 +23,13 @@ RUN sed -i "s/;extension=pdo_mysql/extension=pdo_mysql/g" /etc/php/8.2/apache2/p
 
 RUN sed -i "s/;extension=curl/extension=curl/g" /etc/php/8.2/cli/php.ini
 RUN sed -i "s/;extension=curl/extension=curl/g" /etc/php/8.2/apache2/php.ini
+
+# FOR INMEMORY TESTING WITH SQLITE UNCOMMENT FOLLOWING 5 LINES
+#RUN apt -y install php-sqlite3
+#RUN sed -i "s/;extension=pdo_sqlite/extension=pdo_sqlite/g" /etc/php/8.2/cli/php.ini
+#RUN sed -i "s/;extension=pdo_sqlite/extension=pdo_sqlite/g" /etc/php/8.2/apache2/php.ini
+#RUN sed -i "s/;extension=sqlite3/extension=sqlite3/g" /etc/php/8.2/cli/php.ini
+#RUN sed -i "s/;extension=sqlite3/extension=sqlite3/g" /etc/php/8.2/apache2/php.ini
 
 
 RUN rm /var/www/html/index.html

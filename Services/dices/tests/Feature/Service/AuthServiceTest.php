@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Tests\Feature\Service;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Tests\TestCase;
 use Mockery;
 use Laravel\Passport\Passport;
@@ -35,6 +37,34 @@ class AuthServiceTest extends TestCase
 		parent::setUp();
 		$this->service = new AuthService();
 	}
+
+	
+	
+	
+	public function testCreateJWTokenException(){
+		
+        $returnUser = User::factory()->create();
+
+        $userMock = Mockery::mock($returnUser)->makePartial();
+
+		$object = new \stdClass();
+		$object->accessToken = '';
+        $userMock->shouldReceive('createToken')
+                 ->once()
+                 ->andReturn($object);
+		//$this->app->instance('overload:App\Models\User', $userMock);
+
+
+		$this->expectException(JWTokenNotGeneratedException::class);
+		
+		$jwt = $this->service->createJWTokenByUser($userMock);
+		
+		 Mockery::close(); 
+	}
+
+
+
+
 
 	/**
 	 * @dataProvider checkUserCredentialsSuccessProvider
@@ -397,5 +427,6 @@ class AuthServiceTest extends TestCase
 	protected function tearDown(): void
 	{
 		parent::tearDown();
+		Mockery::close(); 
 	}
 }

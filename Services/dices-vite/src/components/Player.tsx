@@ -78,8 +78,8 @@ export default class Player extends React.Component<IProps, IState>{
 			var arr: any [] = [];
 		
 			Object.keys(jsonDataPlayers).forEach(key => arr.push({
-				player_id: jsonDataPlayers[key]['player_id'], 
-				id: jsonDataPlayers[key]['throw_id'], 
+				player_id: jsonDataPlayers[key]['user_id'], 
+				id: jsonDataPlayers[key]['id'], 
 				date: jsonDataPlayers[key]['created_at'],
 				dice_1: jsonDataPlayers[key]['dice_1'],
 				dice_2: jsonDataPlayers[key]['dice_2'],

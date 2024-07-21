@@ -7,8 +7,8 @@ interface MyContextType {
   updateValue: (newValue: string) => void;
   mainSwitch: string;
   updateValueMain: (newValue: string) => void;
-  playerID: number;
-  updateValueMainAndUserID: (newValueUser: number, newValueMain: string) => void;
+  playerID: string;
+  updateValueMainAndUserID: (newValueUser: string, newValueMain: string) => void;
   updateValueUserTypeAndMain: (newValueUserType: string, newValueMain: string) => void;
 }
 const MyContext = React.createContext<MyContextType | undefined>(undefined);
@@ -21,7 +21,7 @@ interface MyContextProviderProps {
 const MyContextProvider: React.FC<MyContextProviderProps> = ({ children }) => {
   const [userTypeSwitch, setValueUserType] = useState('None');
   const [mainSwitch, setValueMain] = useState('Login');
-  const [playerID, setValueUserID] = useState(0);
+  const [playerID, setValueUserID] = useState('1');
   
   const updateValue = (newValue: string) => {
     setValueUserType(newValue);
@@ -31,7 +31,7 @@ const MyContextProvider: React.FC<MyContextProviderProps> = ({ children }) => {
     setValueMain(newValue);
   };
   
-  const updateValueMainAndUserID = (newValueUser: number, newValueMain: string) => {
+  const updateValueMainAndUserID = (newValueUser: string, newValueMain: string) => {
     setValueUserID(newValueUser);
     setValueMain(newValueMain);
   };

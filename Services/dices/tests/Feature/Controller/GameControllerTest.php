@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Controller\Student;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Testing\TestResponse;
 

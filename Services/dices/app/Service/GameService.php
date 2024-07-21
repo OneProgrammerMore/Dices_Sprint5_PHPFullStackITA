@@ -39,6 +39,7 @@ class GameService
         $throwDB->refresh();
         
         if(!$throwDB){
+			//This seems it will be never throw, it will throw a QueryException, but nonetheless...
 			throw new ThrowNotStoredInDBException($studentID, $dices);
 		}
         
@@ -47,9 +48,9 @@ class GameService
 	
 	public function returnGamesPlayedByUser(User $user): Collection
 	{
-		$games = Throws::where('user_id', '==', $user->id)->get();
+		$games = Throws::where('user_id', $user->id)->get();
 		
-		if(!$games){
+		if($games->count() == 0){
 			throw new NoGamesStoredForUserInDBException($user->id);
 		}
 		return $games;

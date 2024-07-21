@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Controller\Student;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Testing\TestResponse;
 
@@ -357,7 +358,7 @@ class PlayerControllerTest extends TestCase
 		);
 		
 		$response = $this->json('GET', '/api/players/');
-		$response->assertStatus(200);
+		$response->assertStatus(401);
 	}	
 	
 	public function test_list_player_percentage_permission_error(): void
@@ -402,7 +403,7 @@ class PlayerControllerTest extends TestCase
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking');
-		$response->assertStatus(200);
+		$response->assertStatus(401);
 	}	
 	
 	public function test_ranking_permission_error(): void

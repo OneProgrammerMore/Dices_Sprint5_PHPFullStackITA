@@ -21,6 +21,8 @@ services:
             && php artisan db:seed 
             && php artisan key:generate
             && php artisan passport:install --uuids
+            && php artisan migrate --env=testing --force
+            && php artisan passport:install --env=testing --force
             && chmod -R a+w /var/www/html/storage/
             && /usr/sbin/apachectl -D FOREGROUND"
         networks:

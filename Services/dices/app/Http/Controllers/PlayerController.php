@@ -52,19 +52,17 @@ class PlayerController extends Controller
 		
 		$jwtoken = $this->authService->createJWTokenByUser($user);
 		
-		return response()->json([
+		$role = $this->authService->getRoleByUser($user);
+		
+        return response()->json([
 				'user_id' => $user->id,
 				'name' => $user->name,
 				'email' => $user->email,
-				'jwtoken' => $jwtoken
+				'jwtoken' => $jwtoken,
+				'role' => $role
 			]
 			, 201);
-		/*
-		return response()->json([
-				'user' => $user,
-				'token' => $jwtoken
-			]
-			, 201);*/
+
     }
 
 
@@ -83,13 +81,17 @@ class PlayerController extends Controller
 		
 		$jwtoken = $this->authService->createJWTokenByUser($user);
 		
-		return response()->json([
+		$role = $this->authService->getRoleByUser($user);
+		
+        return response()->json([
 				'user_id' => $user->id,
 				'name' => $user->name,
 				'email' => $user->email,
-				'jwtoken' => $jwtoken
+				'jwtoken' => $jwtoken,
+				'role' => $role
 			]
 			, 201);
+
 
     }
 
@@ -100,7 +102,7 @@ class PlayerController extends Controller
     {
 
 		//Check if Name is already taken and return error if it is
-        $newName = $this->authService->checkIfNameAlreadyTaken($request->input('name'));
+        $newName = $this->authService->checkIfNameAllowed($request->input('name'));
         
         //Check user password / credentials
         $this->authService->checkUserCredentials($user, $request->input('password'));
@@ -155,9 +157,18 @@ class PlayerController extends Controller
 		//Check user password / credentials
         $this->authService->checkUserCredentials($user, $request->input('password'));
 		
-		$jwt = $this->authService->createJWTokenByUser($user);
+		$jwtoken = $this->authService->createJWTokenByUser($user);
 		
-        return response()->json(['user' => $user, 'token' => $jwt], 200); 
+		$role = $this->authService->getRoleByUser($user);
+		
+        return response()->json([
+				'user_id' => $user->id,
+				'name' => $user->name,
+				'email' => $user->email,
+				'jwtoken' => $jwtoken,
+				'role' => $role
+			]
+			, 201);
 
 	}
 	

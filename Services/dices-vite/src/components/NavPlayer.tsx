@@ -27,7 +27,7 @@ export default class NavPlayer extends React.Component<IProps, IState>{
 		this.context.updateValueMain(newType);
 	}
 	
-	changeNavSectionAndUser = (userID: number, mainType: string) => {
+	changeNavSectionAndUser = (userID: string, mainType: string) => {
 		this.context.updateValueMainAndUserID(userID, mainType);
 	}
 
@@ -56,7 +56,7 @@ export default class NavPlayer extends React.Component<IProps, IState>{
 						</a>
 					</div>
 					<div className="navItem">
-						<a href="#" onClick={() => this.changeNavSectionAndUser(parseInt(Functions.getCookie('userid')),'Player')} >
+						<a href="#" onClick={() => this.changeNavSectionAndUser(Functions.getCookie('userid'),'Player')} >
 							Show Player
 						</a>
 					</div>

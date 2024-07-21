@@ -92,19 +92,29 @@ export default class Login extends React.Component<IProps, IState>{
 		console.log("Starting Register Player");
 		
 		let response  = await this.registerPlayerApiCall(event);
-
+		console.log('I Am in registerPlayer Point 1');
 		if(response.ok){
-			const result = await response.json();
-			var jsonResponseBody = JSON.parse(result);
-			
-			console.log("Token");
-			console.log(jsonResponseBody['token']);
-			console.log("UserID");
-			console.log(jsonResponseBody['user']['id']);
 
-			Functions.setCookie('token', jsonResponseBody['token'], 90); 
-			Functions.setCookie('userid', jsonResponseBody['user']['id'], 90); 
-			Functions.setCookie('userName', jsonResponseBody['user']['name'], 90); 
+			console.log('I Am in registerPlayer Point 2');
+
+			const result = await response.json();
+			console.log('I Am in registerPlayer Point 2.2');
+			//var jsonResponseBody = JSON.parse(result);
+			var jsonResponseBody = result;
+			
+			console.log('I Am in registerPlayer Point 2.5');
+
+			console.log("Token");
+			console.log(jsonResponseBody['jwtoken']);
+			console.log("UserID");
+			console.log(jsonResponseBody['user_id']);
+			
+			console.log('I Am in registerPlayer Point 3');
+
+			Functions.setCookie('token', jsonResponseBody['jwtoken'], 90); 
+			Functions.setCookie('userid', jsonResponseBody['user_id'], 90); 
+			Functions.setCookie('userName', jsonResponseBody['name'], 90); 
+			Functions.setCookie('userRole', jsonResponseBody['role'], 90); 
 			
 			this.setPlayer();
 		}else{
@@ -155,11 +165,13 @@ export default class Login extends React.Component<IProps, IState>{
 		
 		if(response.ok){
 			const result = await response.json();
-			var jsonResponseBody = JSON.parse(result);
+			//var jsonResponseBody = JSON.parse(result);
+			var jsonResponseBody = result;
 			
-			Functions.setCookie('token', jsonResponseBody['token'], 90); 
-			Functions.setCookie('userid', jsonResponseBody['user']['id'], 90); 
-			Functions.setCookie('userName', jsonResponseBody['user']['name'], 90); 
+			Functions.setCookie('token', jsonResponseBody['jwtoken'], 90); 
+			Functions.setCookie('userid', jsonResponseBody['user_id'], 90); 
+			Functions.setCookie('userName', jsonResponseBody['name'], 90); 
+			Functions.setCookie('userRole', jsonResponseBody['role'], 90); 
 			
 			this.setAdmin();
 		//ToDo Version 1 - PopUp When Response is no okay...
@@ -272,19 +284,21 @@ export default class Login extends React.Component<IProps, IState>{
 		if(response.ok){
 			const jsonResponseBody = await response.json();
 
-			Functions.setCookie('token', jsonResponseBody['token'], 90); 
-			Functions.setCookie('userid', jsonResponseBody['user']['id'], 90); 
-			Functions.setCookie('userName', jsonResponseBody['user']['name'], 90); 
+			Functions.setCookie('token', jsonResponseBody['jwtoken'], 90); 
+			Functions.setCookie('userid', jsonResponseBody['user_id'], 90); 
+			Functions.setCookie('userName', jsonResponseBody['name'], 90); 
+			Functions.setCookie('userRole', jsonResponseBody['role'], 90); 
 			
+			let role = jsonResponseBody['role'];
 			
 			//OMG WORKAROUND TO CHECK ROLES...
-			let role = await this.getRolesWorkAround();
+			//let role = await this.getRolesWorkAround();
 			//Set role for navigator
 			switch(role){
-				case 'Admin':
+				case 'admin':
 					this.setAdmin();
 					break;
-				case 'Player':
+				case 'player':
 					this.setPlayer();
 					break;
 				default:
@@ -301,13 +315,23 @@ export default class Login extends React.Component<IProps, IState>{
 		//Check cookie token and userid
 		var userID = Functions.getCookie('userid');
 		var token = Functions.getCookie('token');
+		var role = Functions.getCookie('userRole');
 		
 		if(userID != '' && token != ''){
-		
-			let role = await this.getRolesWorkAround();
-			if(role == 'Admin'){
+			/*
+			// Creating a custom event object
+			var customEvent = {
+				target: {
+					email: { value: 'custom@example.com' },
+					password: { value: 'customPassword123' }
+				}
+			};
+			this.login({})*/
+			
+			//let role = await this.getRolesWorkAround();
+			if(role == 'admin'){
 				this.setAdmin();
-			}else{
+			}else if(role == 'player'){
 				var response = await this.queryPlayerAndAdmin();
 				if(response.ok){
 					this.setPlayer();

@@ -18,5 +18,10 @@ class Throws extends Model
         'dice_2',
         //'dices_sum',
     ];
+    // Define the relationship with User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

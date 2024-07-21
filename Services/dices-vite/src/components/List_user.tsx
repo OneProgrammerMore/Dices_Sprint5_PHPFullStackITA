@@ -31,7 +31,7 @@ export default class ListUsers extends React.Component<IProps, IState>{
 	static contextType = MyContext;
 	declare context: MyContextType;
 	
-	changeNavSectionAndUser = (userID: number, mainType: string) => {
+	changeNavSectionAndUser = (userID: string, mainType: string) => {
 		// Accessing updateValue function from context
 		this.context.updateValueMainAndUserID(userID, mainType);
 		//this.context.updateValueMain(mainType);
