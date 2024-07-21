@@ -183,8 +183,7 @@ class PlayerControllerTest extends TestCase
 
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('PUT', '/api/players/' . $user->id, $data);
@@ -216,8 +215,7 @@ class PlayerControllerTest extends TestCase
 
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('PUT', '/api/players/' . $user->id, $data);
@@ -251,8 +249,7 @@ class PlayerControllerTest extends TestCase
 
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('PUT', '/api/players/' . $user->id, $data);
@@ -287,8 +284,7 @@ class PlayerControllerTest extends TestCase
 
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('PUT', '/api/players/' . $user_2->id, $data);
@@ -336,8 +332,7 @@ class PlayerControllerTest extends TestCase
 		$throws = Throws::factory(100)->create();
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/');
@@ -353,8 +348,7 @@ class PlayerControllerTest extends TestCase
 		$users_players->each->assignRole('player');
 
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/');
@@ -381,8 +375,7 @@ class PlayerControllerTest extends TestCase
 		$throws = Throws::factory(100)->create();
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking');
@@ -398,8 +391,7 @@ class PlayerControllerTest extends TestCase
 		$users_players->each->assignRole('player');
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking');
@@ -427,8 +419,7 @@ class PlayerControllerTest extends TestCase
 		$throws = Throws::factory(100)->create();
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking/loser');
@@ -444,8 +435,7 @@ class PlayerControllerTest extends TestCase
 		$users_players->each->assignRole('player');
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking/loser');
@@ -471,8 +461,7 @@ class PlayerControllerTest extends TestCase
 		$throws = Throws::factory(100)->create();
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking/winner');
@@ -488,8 +477,7 @@ class PlayerControllerTest extends TestCase
 		$users_players->each->assignRole('player');
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking/winner');

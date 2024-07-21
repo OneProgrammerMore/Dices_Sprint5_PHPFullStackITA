@@ -34,8 +34,7 @@ class GameControllerTest extends TestCase
 				
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
@@ -61,8 +60,7 @@ class GameControllerTest extends TestCase
 				
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
@@ -88,8 +86,7 @@ class GameControllerTest extends TestCase
 				
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
@@ -111,8 +108,7 @@ class GameControllerTest extends TestCase
 		
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
@@ -133,8 +129,7 @@ class GameControllerTest extends TestCase
 				
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
@@ -153,8 +148,7 @@ class GameControllerTest extends TestCase
 				
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
@@ -177,8 +171,7 @@ class GameControllerTest extends TestCase
 				
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
@@ -201,8 +194,7 @@ class GameControllerTest extends TestCase
 				
 		//Authentuication for Passport
 		Passport::actingAs(
-			$user,
-			['check-status']
+			$user
 		);     
           
         // Ensure the user is considered to have the 'player' role
