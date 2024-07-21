@@ -10,7 +10,7 @@ class NoGamesStoredInDBException extends Exception
 {
     public const MESSAGE = 'It was not possible to retrieve any games from the database.';
 
-    public function __construct( $code = 401, Throwable $previous = null)
+    public function __construct( $code = 204, Throwable $previous = null)
     {
         $message = sprintf(self::MESSAGE);
         parent::__construct($message, $code, $previous);

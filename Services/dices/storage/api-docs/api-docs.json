@@ -1,0 +1,638 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ITA Profiles page API documentation",
+        "description": "\n\n    API Rest documentation used on ITA Profiles WEB. Some useful links below:\n *   [ITA Profles Backend Repository](https://github.com/IT-Academy-BCN/ita-profiles-backend)\n *   [ITA Profiles Frontend Repository](https://github.com/IT-Academy-BCN/ita-profiles-frontend)\n *   [ITA Profiles WEB](https://ornate-dieffenbachia-e0ff84.netlify.app)",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:82/api"
+        }
+    ],
+    "paths": {
+        "/players/{user}/games": {
+            "get": {
+                "tags": [
+                    "Game -> ListGames"
+                ],
+                "summary": "List the games of a player",
+                "description": "List the games of a player",
+                "operationId": "listGame",
+                "parameters": [
+                    {
+                        "name": "userID",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success. Returns the list of games for a given user."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "204": {
+                        "description": "No Game Stored"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Game -> PlaysGame"
+                ],
+                "summary": "Plays a game as a Player",
+                "description": "Plays a game as a Player",
+                "operationId": "playsGame",
+                "parameters": [
+                    {
+                        "name": "userID",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success. Returns the result of the game.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "dice_1": {
+                                                "type": "integer",
+                                                "example": "1"
+                                            },
+                                            "dice_2": {
+                                                "type": "integer",
+                                                "example": "6"
+                                            },
+                                            "dices_sum": {
+                                                "type": "integer",
+                                                "example": "7"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Game -> DeleteGames"
+                ],
+                "summary": "Delete the games of a given player",
+                "description": "Delete the games of a player",
+                "operationId": "deleteGames",
+                "parameters": [
+                    {
+                        "name": "userID",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success. The games of the given player have been deleted"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Player -> Login"
+                ],
+                "summary": "Logs a user",
+                "description": "Logs an user",
+                "operationId": "loginUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "player01@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success. Returns the user identification and token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "userid": {
+                                                "type": "string",
+                                                "example": "aaa-bbb-ccc-ddd-eee"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "player01"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "player01@mail.com"
+                                            },
+                                            "jwtoken": {
+                                                "type": "string",
+                                                "example": "aaa.bbb.ccc"
+                                            },
+                                            "role": {
+                                                "type": "string",
+                                                "example": "player/admin"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Player -> RegisterPlayer"
+                ],
+                "summary": "Register as a Player",
+                "description": "Register an user with a player role",
+                "operationId": "registerPlayer",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "player01"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "player01@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success. Returns the user identification and token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "userid": {
+                                                "type": "string",
+                                                "example": "aaa-bbb-ccc-ddd-eee"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "player01"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "player01@mail.com"
+                                            },
+                                            "jwtoken": {
+                                                "type": "string",
+                                                "example": "aaa.bbb.ccc"
+                                            },
+                                            "role": {
+                                                "type": "string",
+                                                "example": "player/admin"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/registeradmin": {
+            "post": {
+                "tags": [
+                    "Player -> RegisterPlayer"
+                ],
+                "summary": "Register as a Administrator",
+                "description": "Register an user with a administrator role",
+                "operationId": "registerAdmin",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "admin01"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin01@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success. Returns the user identification and token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "userid": {
+                                                "type": "string",
+                                                "example": "aaa-bbb-ccc-ddd-eee"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "player01"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "player01@mail.com"
+                                            },
+                                            "jwtoken": {
+                                                "type": "string",
+                                                "example": "aaa.bbb.ccc"
+                                            },
+                                            "role": {
+                                                "type": "string",
+                                                "example": "player/admin"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                }
+            }
+        },
+        "/players": {
+            "get": {
+                "tags": [
+                    "Player -> ListPlayers"
+                ],
+                "summary": "List the players",
+                "description": "List the players with games as admin",
+                "operationId": "players",
+                "responses": {
+                    "200": {
+                        "description": "Success. Returns the list of the player with the results."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "204": {
+                        "description": "No Game Stored"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/players/{user}": {
+            "post": {
+                "tags": [
+                    "Player -> UpdateName"
+                ],
+                "summary": "Modify the name of a player",
+                "description": "Modifies the name of a user with player role",
+                "operationId": "updatesName",
+                "parameters": [
+                    {
+                        "name": "userID",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "player01@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success. The name of the player has been updated."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                }
+            }
+        },
+        "/players/ranking": {
+            "get": {
+                "tags": [
+                    "Player -> Ranking"
+                ],
+                "summary": "Returns the ranking of all players.",
+                "description": "Returns the ranking of all players.",
+                "operationId": "ranking",
+                "responses": {
+                    "200": {
+                        "description": "Success. Returns the ranking of all players."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "204": {
+                        "description": "No Game Stored"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/players/ranking/loser": {
+            "get": {
+                "tags": [
+                    "Player -> Loser"
+                ],
+                "summary": "Returns the worst of all players.",
+                "description": "Returns the worst of all players.",
+                "operationId": "Loser",
+                "responses": {
+                    "200": {
+                        "description": "Success. Returns the ranking of all players."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "204": {
+                        "description": "No Game Stored"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/players/ranking/winner": {
+            "get": {
+                "tags": [
+                    "Player -> Winner"
+                ],
+                "summary": "Returns the winner of all players.",
+                "description": "Returns the winner of all players.",
+                "operationId": "winner",
+                "responses": {
+                    "200": {
+                        "description": "Success. Returns the best player."
+                    },
+                    "422": {
+                        "description": "Validation Error"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "204": {
+                        "description": "No Game Stored"
+                    },
+                    "500": {
+                        "description": "Error inesperat"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Bearer token authentication",
+                "name": "Bearer",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Game -> PlaysGame",
+            "description": "Game -> PlaysGame"
+        },
+        {
+            "name": "Game -> ListGames",
+            "description": "Game -> ListGames"
+        },
+        {
+            "name": "Game -> DeleteGames",
+            "description": "Game -> DeleteGames"
+        },
+        {
+            "name": "Player -> Login",
+            "description": "Player -> Login"
+        },
+        {
+            "name": "Player -> RegisterPlayer",
+            "description": "Player -> RegisterPlayer"
+        },
+        {
+            "name": "Player -> ListPlayers",
+            "description": "Player -> ListPlayers"
+        },
+        {
+            "name": "Player -> UpdateName",
+            "description": "Player -> UpdateName"
+        },
+        {
+            "name": "Player -> Ranking",
+            "description": "Player -> Ranking"
+        },
+        {
+            "name": "Player -> Loser",
+            "description": "Player -> Loser"
+        },
+        {
+            "name": "Player -> Winner",
+            "description": "Player -> Winner"
+        }
+    ]
+}
