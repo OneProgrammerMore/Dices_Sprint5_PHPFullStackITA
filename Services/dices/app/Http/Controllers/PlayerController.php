@@ -168,7 +168,7 @@ class PlayerController extends Controller
 				'jwtoken' => $jwtoken,
 				'role' => $role
 			]
-			, 201);
+			, 200);
 
 	}
 	
