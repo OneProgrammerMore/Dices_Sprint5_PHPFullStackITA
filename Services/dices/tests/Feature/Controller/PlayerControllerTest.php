@@ -358,7 +358,7 @@ class PlayerControllerTest extends TestCase
 		);
 		
 		$response = $this->json('GET', '/api/players/');
-		$response->assertStatus(401);
+		$response->assertStatus(204);
 	}	
 	
 	public function test_list_player_percentage_permission_error(): void
@@ -403,7 +403,7 @@ class PlayerControllerTest extends TestCase
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking');
-		$response->assertStatus(401);
+		$response->assertStatus(204);
 	}	
 	
 	public function test_ranking_permission_error(): void
@@ -449,7 +449,7 @@ class PlayerControllerTest extends TestCase
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking/loser');
-		$response->assertStatus(401);
+		$response->assertStatus(204);
 	}	
 	
 	public function test_worst_permission_error(): void
@@ -493,7 +493,7 @@ class PlayerControllerTest extends TestCase
 		);
 		
 		$response = $this->json('GET', '/api/players/ranking/winner');
-		$response->assertStatus(401);
+		$response->assertStatus(204);
 	}	
 	
 	public function test_best_permission_error(): void
